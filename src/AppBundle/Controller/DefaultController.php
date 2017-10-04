@@ -20,9 +20,9 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/admin", name="admin_index")
+     * @Route("/admin/tableau-de-bord", name="admin_index")
      */
-    public function adminAction(Request $request)
+    public function tbordAction(Request $request)
     {
         return $this->render('default/bo.html.twig');
     }
