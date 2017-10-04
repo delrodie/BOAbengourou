@@ -300,4 +300,8 @@ class Typost
     {
         return $this->posts;
     }
+
+    public function __toString() {
+        return $this->getNom();
+    }
 }
