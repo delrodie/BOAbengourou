@@ -300,4 +300,8 @@ class Typevent
     {
         return $this->agendas;
     }
+
+    public function __toString() {
+        return $this->getNom();
+    }
 }
