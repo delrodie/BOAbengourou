@@ -29,6 +29,11 @@ class Typub
      */
     private $nom;
 
+     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Publicite", mappedBy="typub")
+     */
+     private $publicites;
+
 
      /**
       * @var string
@@ -224,5 +229,50 @@ class Typub
     public function getModifieLe()
     {
         return $this->modifieLe;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->publicites = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add publicite
+     *
+     * @param \AppBundle\Entity\Publicite $publicite
+     *
+     * @return Typub
+     */
+    public function addPublicite(\AppBundle\Entity\Publicite $publicite)
+    {
+        $this->publicites[] = $publicite;
+
+        return $this;
+    }
+
+    /**
+     * Remove publicite
+     *
+     * @param \AppBundle\Entity\Publicite $publicite
+     */
+    public function removePublicite(\AppBundle\Entity\Publicite $publicite)
+    {
+        $this->publicites->removeElement($publicite);
+    }
+
+    /**
+     * Get publicites
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPublicites()
+    {
+        return $this->publicites;
+    }
+
+    public function __toString() {
+        return $this->getNom();
     }
 }
