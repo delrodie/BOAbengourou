@@ -42,7 +42,7 @@
           <!--Brand logo & name-->
           <!--================================-->
           <div class="navbar-header">
-            <a href="#" class="navbar-brand">
+            <a href="{{ path('admin_index')}}" class="navbar-brand">
               <img src="{{ asset('backoffice/img/favicon2.ico')}}" width="45" style="float: left;">
               <div class="brand-title">
                 <span class="brand-text">Houz'of</span>
@@ -148,7 +148,7 @@
                     <li class="list-header">Accueil</li>
                     <!--Menu list item-->
                     <li>
-                      <a href="#">
+                      <a href="{{ path('admin_index')}}">
                         <i class="fa fa-flask"></i>
                         <span class="menu-title">
                           Tableau de bord
@@ -177,7 +177,7 @@
                     </li>
                     <!--Menu list item-->
                     <li>
-                      <a href="#">
+                      <a href="{{ path('admin_information_index')}}">
                         <i class="fa fa-info-circle"></i>
                         <span class="menu-title">
                           Informations
