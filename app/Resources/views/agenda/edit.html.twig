@@ -96,18 +96,25 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-xs-5 col-xs-offset-1">
+                      <div class="col-xs-4 col-xs-offset-1">
                         <div class="form-group">
                           <label class="control-label">Lieu</label>
                           {{ form_widget(edit_form.lieu) }}
                           {{ form_errors(edit_form.lieu) }}
                         </div>
                       </div>
-                      <div class="col-xs-5 col-xs-offset-0">
+                      <div class="col-xs-3 col-xs-offset-0">
                         <div class="form-group" id="sandbox-container">
-                          <label class="control-label">Date d'évènement</label>
+                          <label class="control-label">Debut période</label>
                           {{ form_widget(edit_form.datevent) }}
                           {{ form_errors(edit_form.datevent) }}
+                        </div>
+                      </div>
+                      <div class="col-xs-3 col-xs-offset-0">
+                        <div class="form-group" id="sandbox-container">
+                          <label class="control-label">Fin période</label>
+                          {{ form_widget(edit_form.finevent) }}
+                          {{ form_errors(edit_form.finevent) }}
                         </div>
                       </div>
                     </div>

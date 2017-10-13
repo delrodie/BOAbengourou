@@ -42,6 +42,13 @@ class Agenda
     /**
      * @var string
      *
+     * @ORM\Column(name="finevent", type="string", length=255, nullable=true)
+     */
+    private $finevent;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="resume", type="text", nullable=true)
      */
     private $resume;
@@ -637,5 +644,29 @@ class Agenda
     public function getImageFile()
     {
         return $this->imageFile;
+    }
+
+    /**
+     * Set finevent
+     *
+     * @param string $finevent
+     *
+     * @return Agenda
+     */
+    public function setFinevent($finevent)
+    {
+        $this->finevent = $finevent;
+
+        return $this;
+    }
+
+    /**
+     * Get finevent
+     *
+     * @return string
+     */
+    public function getFinevent()
+    {
+        return $this->finevent;
     }
 }

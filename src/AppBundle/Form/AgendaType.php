@@ -32,7 +32,14 @@ class AgendaType extends AbstractType
                   'attr'  => array(
                       'class' => 'form-control',
                       'autocomplete'  => 'off',
-                      'placeholder' => 'Date de l\'evenement'
+                      'placeholder' => 'Date debut de l\'evenement'
+                  )
+            ))
+            ->add('finevent', TextType::class, array(
+                  'attr'  => array(
+                      'class' => 'form-control',
+                      'autocomplete'  => 'off',
+                      'placeholder' => 'Date fin de l\'evenement'
                   )
             ))
             ->add('resume', null, array(
