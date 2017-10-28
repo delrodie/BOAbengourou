@@ -1,0 +1,232 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ post.titre|raw }}{% endblock %}
+
+{% block stylesheets %}
+          {{ parent() }}
+
+          <script defer src="{{ asset('ressources/vendor/turbolinks/Turbolinks.js')}}" data-turbolinks-eval="false"></script>
+
+          <style type="text/css" media="screen">
+            .turbolinks-progress-bar{height: 7px; background: #b70505;}
+          </style>
+{% endblock %}
+
+        {% block meta %}
+        <meta name="keywords" content="{{ post.tag|raw }}"  />
+        <meta name="description" content="{{ post.resume|raw}}" />
+        <meta name="revisit" content="3 days" />
+        <meta name="revisit-after" content="3 days">
+        <meta name="Author" content="AHOUZOF, Delrodie AMOIKON">
+        <meta name="Copyright" content="www.abengourou.ci">
+        <meta name="Content-Language" content="FR">
+        <meta name="distribution" content="global" />
+        <meta name="Audience" content="All" />
+        <meta name="Robots" content="full">
+
+        <link rel="canonical" href="http://abengourou.ci{{ path('fo_actualite_type', {'type': post.typost.slug, 'slug': post.slug})}}" />
+        <meta property="og:locale" content="fr_FR" />
+        <meta property="og:type" content="Item" />
+        <meta property="og:title" content="{{ post.titre|raw }}" />
+        <meta property="og:description" content="{{ post.resume|raw }}" />
+        <meta property="og:url" content="http://abengourou.ci{{ path('fo_actualite_type', {'type': post.typost.slug, 'slug': post.slug})}}" />
+        <meta property="og:site_name" content="Abengourou" />
+        <meta property="article:section" content="Item" />
+        <meta property="article:published_time" content="{{ post.publieLe|date('Y-m-d')}}T{{ post.publieLe|date('H:i:s')}}+00:00" />
+        <meta property="article:modified_time" content="{{ post.modifieLe|date('Y-m-d')}}T{{ post.modifieLe|date('H:i:s')}}+00:00" />
+        <meta property="og:updated_time" content="{{ post.modifieLe|date('Y-m-d')}}T{{ post.modifieLe|date('H:i:s')}}+00:00" />
+        <meta property="og:image" content="http://abengourou.ci{{ vich_uploader_asset(post, 'imageFile') }}" />
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:description" content="{{ post.resume|raw }}"/>
+        <meta name="twitter:title" content="{{ post.titre|raw }}"/>
+        <meta name="twitter:domain" content="Abengourou"/>
+        <meta name="twitter:image:src" content="http://abengourou.ci{{ vich_uploader_asset(post, 'imageFile') }}"/>
+        <script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "NewsArticle",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http://abengourou.ci"
+          },
+          "headline": "{{ post.titre|raw }}",
+          "image": [
+            "http://abengourou.ci/ressources/images/logos/logo.png",
+            "http://abengourou.ci{{ vich_uploader_asset(post, 'imageFile') }}"
+           ],
+          "datePublished": "{{ post.publieLe|date('Y-m-d')}}T{{ post.publieLe|date('H:i:s')}}+00:00",
+          "dateModified": "{{ post.modifieLe|date('Y-m-d')}}T{{ post.modifieLe|date('H:i:s')}}+00:00",
+          "author": {
+            "@type": "Person",
+            "name": "Delrodie AMOIKON"
+          },
+           "publisher": {
+            "@type": "Organization",
+            "name": "ABENGOUROU",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "http://abengourou.ci/ressources/images/logos/logo.png"
+            }
+          },
+          "description": "{{ post.resume|raw }}"
+        }
+        </script>
+        {% endblock %}
+
+{% block body %}
+    <div class="page-title">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <ol class="breadcrumb">
+              <li><a href="{{ path('homepage')}}">Accueil</a></li>
+              <li><a href="{{ path('fo_tag_post', {'tag': 'actualite'})}}">Actualités</a></li>
+              <li><a href="{{ path('fo_rubrique_post', {'nom': post.typost.nom})}}">{{ post.typost.nom }}</a></li>
+              <li>{{ post.titre }}</a></li>
+            </ol>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <section class="block-wrapper">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+
+					<div class="single-post">
+
+						<div class="post-title-area">
+							<a class="post-cat" href="{{ path('fo_rubrique_post', {'nom': post.typost.nom})}}">{{ post.typost.nom }}</a>
+							<h2 class="post-title">
+				 				{{ post.titre }}
+				 			</h2>
+				 			<div class="post-meta">
+								<span class="post-author">
+									By <a href="#">{{ post.publiePar|title }}</a>
+								</span>
+								<span class="post-date"><i class="fa fa-clock-o"></i> {{ post.publieLe|date('d M Y')}}</span>
+								<!--<span class="post-hits"><i class="fa fa-eye"></i> 21</span>
+								<span class="post-comment"><i class="fa fa-comments-o"></i>
+								<a href="#" class="comments-link"><span>01</span></a></span>-->
+							</div>
+						</div>
+
+						<div class="post-content-area">
+							<div class="post-media post-featured-image">
+								<a href="{{ asset('uploads/posts/'~ post.imageName) | imagine_filter('actualite') }}" class="gallery-popup"><img src="{{ asset('uploads/posts/'~ post.imageName) | imagine_filter('post') }}" class="img-responsive" alt="{{ post.titre }}"></a>
+							</div>
+							<div class="entry-content">
+								{{ post.contenu|raw }}
+							</div><!-- Entery content end -->
+
+							<div class="tags-area clearfix">
+								<div class="post-tags">
+									<span>Mots clés:</span>
+                  {% for tag in post.tag|split(',') %}
+                  <a href="{{ path('fo_tag_post', {'tag': tag})}}">#{{ tag }}</a>
+                  {% endfor %}
+	   						</div>
+							</div><!-- Tags end -->
+
+							<div class="share-items clearfix">
+   							<ul class="post-social-icons unstyled">
+   								<li class="facebook">
+   									<a href="#">
+   									<i class="fa fa-facebook"></i> <span class="ts-social-title">Facebook</span></a>
+   								</li>
+   								<li class="twitter">
+   									<a href="#">
+   									<i class="fa fa-twitter"></i> <span class="ts-social-title">Twitter</span></a>
+   								</li>
+   								<li class="gplus">
+   									<a href="#">
+   									<i class="fa fa-google-plus"></i> <span class="ts-social-title">Google +</span></a>
+   								</li>
+   								<li class="pinterest">
+   									<a href="#">
+   									<i class="fa fa-pinterest"></i> <span class="ts-social-title">Pinterest</span></a>
+   								</li>
+   							</ul>
+   						</div>
+
+						</div>
+					</div>
+
+
+					<div class="related-posts block">
+						<h3 class="block-title"><span>Autres articles de la rubrique {{ post.typost.nom|upper }}</span></h3>
+
+						<div id="latest-news-slide" class="owl-carousel owl-theme latest-news-slide">
+							{% for similaire in similaires %}
+              <div class="item">
+                <div class="post-block-style clearfix">
+                  <div class="post-thumb">
+                    <a href="#"><img class="img-responsive" src="{{ asset('uploads/posts/'~ similaire.imageName) | imagine_filter('similaire') }}" alt="{{ similaire.titre }}" /></a>
+                  </div>
+                  <a class="post-cat" href="#">{{ similaire.typost.nom }}</a>
+                  <div class="post-content">
+                    <h2 class="post-title title-medium">
+                      <a href="#">{{ similaire.titre }}</a>
+                    </h2>
+                    <div class="post-meta">
+                      <span class="post-author"><a href="#">{{ similaire.publiePar|title }}</a></span>
+                      <span class="post-date">{{ similaire.publieLe|date('d M Y')}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+							{% endfor %}
+
+						</div>
+
+					</div>
+
+					<!-- Debut Commentaire
+					<div id="comments" class="comments-area block">
+						<h3 class="block-title"><span>Commentaires</span></h3>
+
+					</div> Fin commentaire-->
+
+				</div>
+
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<div class="sidebar sidebar-right">
+						<div class="widget">
+							<h3 class="block-title"><span>Nous suivre</span></h3>
+
+							<ul class="social-icon">
+								<li><a href="#" target="_blank"><i class="fa fa-rss"></i></a></li>
+								<li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+								<li><a href="#" target="_blank"><i class="fa fa-vimeo-square"></i></a></li>
+								<li><a href="#" target="_blank"><i class="fa fa-youtube"></i></a></li>
+							</ul>
+						</div><!-- Widget Social end -->
+
+						<div class="widget text-center">
+							<img class="banner img-responsive" src="images/banner-ads/ad-sidebar.png" alt="" />
+						</div><!-- Sidebar Ad end -->
+
+						<div class="widget widget-tags">
+							<h3 class="block-title"><span>Facebook</span></h3>
+							<div class="fb-page"
+							data-href="https://www.facebook.com/Nuit-2-Reves-302256336935002/"
+							data-tabs="timeline,events,messages"
+							data-height="1200"
+							data-small-header="true"
+							data-adapt-container-width="true"
+							data-hide-cover="false"
+							data-show-facepile="true">
+							<blockquote cite="https://www.facebook.com/Nuit-2-Reves-302256336935002/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Nuit-2-Reves-302256336935002/">Nuit 2 Reves</a></blockquote></div>
+			            </ul>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+{% endblock %}

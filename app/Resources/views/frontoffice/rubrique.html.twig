@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ rubrique|upper }} {% endblock %}
+
+{% block stylesheets %}
+          {{ parent() }}
+
+          <script defer src="{{ asset('ressources/vendor/turbolinks/Turbolinks.js')}}" data-turbolinks-eval="false"></script>
+
+          <style type="text/css" media="screen">
+            .turbolinks-progress-bar{height: 7px; background: #b70505;}
+          </style>
+{% endblock %}
+
+{% block body %}
+    <div class="page-title">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <ol class="breadcrumb">
+              <li><a href="{{ path('homepage')}}">Accueil</a></li>
+              <li>{{ rubrique|title }}</li>
+            </ol>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <section class="block-wrapper">
+		<div class="container">
+			<div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+
+					<div class="block category-listing">
+						<h3 class="block-title"><span>{{ rubrique }}</span></h3>
+
+						<div class="row">
+							{% for post in posts %}
+                <div class="col-md-6 col-sm-6">
+                  <div class="post-block-style post-grid clearfix">
+                    <div class="post-thumb">
+                      <a href="{{ path('fo_actualite_type', {'type': post.typost.slug, 'slug': post.slug})}}">
+                        <img class="img-responsive" src="{{ asset('uploads/posts/'~ post.imageName) | imagine_filter('rubrique') }}" alt="" />
+                      </a>
+                    </div>
+                    <a class="post-cat" href="#">{{ post.typost.nom }}</a>
+                    <div class="post-content">
+                      <h2 class="post-title title-large">
+                        <a href="{{ path('fo_actualite_type', {'type': post.typost.slug, 'slug': post.slug})}}">{{ post.titre }}</a>
+                      </h2>
+                      <div class="post-meta">
+                        <span class="post-author"><a href="#">{{ post.publiePar|title }}</a></span>
+                        <span class="post-date">{{ post.publieLe|date('d M Y')}}</span>
+                        <!--<span class="post-comment pull-right"><i class="fa fa-comments-o"></i>
+                        <a href="#" class="comments-link"><span>03</span></a></span>-->
+                      </div>
+                      <p class="text-justify">{{ post.resume|raw }}</p>
+                    </div>
+                  </div>
+                </div>
+							{% endfor %}
+
+						</div>
+					</div>
+
+					<!--<div class="paging">
+		            <ul class="pagination">
+		              <li class="active"><a href="#">1</a></li>
+		              <li><a href="#">2</a></li>
+		              <li><a href="#">3</a></li>
+		              <li><a href="#">4</a></li>
+		              <li><a href="#">»</a></li>
+		              <li>
+		              	<span class="page-numbers">Page 1 of 2</span>
+		              </li>
+		            </ul>
+	          	</div>-->
+        </div>
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<div class="sidebar sidebar-right">
+						<div class="widget">
+							<h3 class="block-title"><span>Nous suivre</span></h3>
+
+							<ul class="social-icon">
+								<li><a href="#" target="_blank"><i class="fa fa-rss"></i></a></li>
+								<li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+								<li><a href="#" target="_blank"><i class="fa fa-vimeo-square"></i></a></li>
+								<li><a href="#" target="_blank"><i class="fa fa-youtube"></i></a></li>
+							</ul>
+						</div><!-- Widget Social end -->
+
+						<div class="widget text-center">
+							<img class="banner img-responsive" src="images/banner-ads/ad-sidebar.png" alt="" />
+						</div><!-- Sidebar Ad end -->
+
+						<div class="widget widget-tags">
+							<h3 class="block-title"><span>Facebook</span></h3>
+							<div class="fb-page"
+							data-href="https://www.facebook.com/Nuit-2-Reves-302256336935002/"
+							data-tabs="timeline,events,messages"
+							data-height="1200"
+							data-small-header="true"
+							data-adapt-container-width="true"
+							data-hide-cover="false"
+							data-show-facepile="true">
+							<blockquote cite="https://www.facebook.com/Nuit-2-Reves-302256336935002/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Nuit-2-Reves-302256336935002/">Nuit 2 Reves</a></blockquote></div>
+			            </ul>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+{% endblock %}
