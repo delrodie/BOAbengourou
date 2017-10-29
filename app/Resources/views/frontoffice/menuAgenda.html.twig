@@ -1,0 +1,16 @@
+{% for menu in menus %}
+<div class="col-md-3">
+  <div class="post-block-style clearfix">
+  <div class="post-thumb">
+    <!--<a href="{{ asset('uploads/events/'~ menu.imageName) | imagine_filter('actualite') }}" class="gallery-popup"><img class="img-responsive" src="{{ asset('uploads/events/'~ menu.imageName) | imagine_filter('actualiteMenu') }}" alt="{{ menu.titre }}" /></a>-->
+    <a href="{{ asset('uploads/events/'~ menu.imageName) | imagine_filter('actualite') }}" class="gallery-popup"><img class="img-responsive" src="{{ vich_uploader_asset(menu, 'imageFile') | imagine_filter('actualiteMenu') }}" alt="{{ menu.titre }}" /></a>
+  </div>
+  <a class="post-cat" href="#">{{ menu.typevent.nom }}</a>
+  <div class="post-content">
+    <h2 class="post-title title-small">
+      <a href="#">{{ menu.titre }}</a>
+    </h2>
+  </div>
+</div>
+</div>
+{% endfor %}

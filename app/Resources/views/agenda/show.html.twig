@@ -85,10 +85,10 @@
                 <u>Lieu</u> : <strong>{{ agenda.lieu|title }}</strong>
               </p>
               <p>
-                <u>Période de l'évènement </u> : du <strong>{{ agenda.datevent }}</strong> au <strong>{{ agenda.finevent }}</strong>
+                <u>Période de l'évènement </u> : du <strong>{{ agenda.datevent|date('d M Y') }}</strong> au <strong>{{ agenda.finevent|date('d M Y') }}</strong>
               </p>
               <p>
-                <u>Période de publication </u> : du <strong>{{ agenda.datedebut }}</strong> au <strong>{{ agenda.datefin }}</strong>
+                <u>Période de publication </u> : du <strong>{{ agenda.datedebut|date('d M Y') }}</strong> au <strong>{{ agenda.datefin|date('d M Y') }}</strong>
               </p>
               <p>
                 <u>Statut</u> :

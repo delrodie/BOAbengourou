@@ -166,6 +166,77 @@ liip_imagine:
                 relative_resize:
                     widen: 150
 
+        actualite:
+            quality: 100
+            #filters:
+            #    relative_resize:
+            #        widen: 500
+
+        agendaTop:
+            quality: 100
+            filters:
+                thumbnail: { size: [568, 465], mode: inset }
+                background: { size: [568, 465], position: center, color: '#ffffff'}
+
+        agendaSecondaire:
+            quality: 100
+            filters:
+                thumbnail: { size: [282, 231], mode: inset }
+                background: { size: [282, 231], position: center, color: '#ffffff'}
+
+        actualiteTop:
+            quality: 100
+            filters:
+                thumbnail: { size: [360, 239], mode: inset }
+                background: { size: [360, 239], position: center, color: '#ffffff'}
+
+        actualiteSecondaire:
+            quality: 100
+            filters:
+                thumbnail: { size: [100, 75], mode: inset }
+                background: { size: [100, 75], position: center, color: '#ffffff'}
+
+        actualiteMenu:
+            quality: 100
+            filters:
+                thumbnail: { size: [213, 142], mode: outbound }
+                background: { size: [213, 142], position: center, color: '#ffffff'}
+
+        jeuneAction:
+            quality: 100
+            filters:
+                thumbnail: { size: [230, 152], mode: inset }
+                background: { size: [230, 152], position: center, color: '#ffffff'}
+
+        decouverteTop:
+            quality: 100
+            filters:
+                thumbnail: { size: [360, 240], mode: inset }
+                background: { size: [360, 240], position: center, color: '#ffffff'}
+
+        decouverteSecondaire:
+            quality: 100
+            filters:
+                thumbnail: { size: [100, 75], mode: inset }
+                background: { size: [100, 75], position: center, color: '#ffffff'}
+
+        similaire:
+            quality: 100
+            filters:
+                thumbnail: { size: [230, 152], mode: outbound }
+                background: { size: [230, 152], position: center, color: '#ffffff'}
+        rubrique:
+            quality: 100
+            filters:
+                thumbnail: { size: [360, 240], mode: outbound }
+                background: { size: [360, 240], position: center, color: '#ffffff'}
+
+        post:
+            quality: 100
+            filters:
+                relative_resize:
+                    widen: 750
+
 ivory_ck_editor:
     default_config: default
     configs:
