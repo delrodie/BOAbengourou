@@ -73,7 +73,7 @@ class FrontofficeController extends Controller
     /**
      * Affichage de la rubrique globale
      *
-     * @Route("/{nom}/", name="fo_rubrique_post")
+     * @Route("/categorie/{nom}/", name="fo_rubrique_post")
      */
     public function rubriquePostAction(Request $request, $nom)
     {
