@@ -301,4 +301,9 @@ class Domaine
     {
         return $this->annuaires;
     }
+
+
+    public function __toString() {
+        return $this->getNom();
+    }
 }
