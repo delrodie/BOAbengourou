@@ -37,6 +37,11 @@ class Domaine
      */
     private $statut;
 
+   /**
+   * @ORM\OneToMany(targetEntity="AppBundle\Entity\Annuaire", mappedBy="domaine")
+   */
+   private $annuaires;
+
      /**
       * @var string
       *
@@ -254,5 +259,46 @@ class Domaine
     public function getModifieLe()
     {
         return $this->modifieLe;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->annuaires = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add annuaire
+     *
+     * @param \AppBundle\Entity\Annuaire $annuaire
+     *
+     * @return Domaine
+     */
+    public function addAnnuaire(\AppBundle\Entity\Annuaire $annuaire)
+    {
+        $this->annuaires[] = $annuaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove annuaire
+     *
+     * @param \AppBundle\Entity\Annuaire $annuaire
+     */
+    public function removeAnnuaire(\AppBundle\Entity\Annuaire $annuaire)
+    {
+        $this->annuaires->removeElement($annuaire);
+    }
+
+    /**
+     * Get annuaires
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAnnuaires()
+    {
+        return $this->annuaires;
     }
 }
