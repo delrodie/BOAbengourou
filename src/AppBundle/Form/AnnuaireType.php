@@ -42,6 +42,13 @@ class AnnuaireType extends AbstractType
                       'row' => 5,
                   )
             ))
+            ->add('description', null, array(
+                  'attr'  => array(
+                      'class' => 'form-control',
+                      'autocomplete'  => 'off',
+                      'row' => 5,
+                  )
+            ))
             ->add('localisation', TextType::class, array(
                   'attr'  => array(
                       'class' => 'form-control',

@@ -102,4 +102,20 @@ class FrontofficeController extends Controller
             'rubrique'  => $tag,
         ));
     }
+
+    /**
+     * Liste des entreprise de l'annuaire
+     *
+     * @Route("/annuaire/liste-des-entreprises", name="fo_annuaire_liste")
+     */
+    public function annuaireAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        //$annuaires = $em->getRepository('AppBundle:Annuaire')->findOrderByNom();
+        $annuaires = $em->getRepository('AppBundle:Annuaire')->findAll();
+
+        return $this->render('frontoffice/annuaire.html.twig', array(
+            'annuaires' => $annuaires,
+        ));
+    }
 }

@@ -35,6 +35,13 @@ class Annuaire
     /**
      * @var string
      *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="quartier", type="string", length=255, nullable=true)
      */
     private $quartier;
@@ -854,5 +861,29 @@ class Annuaire
     public function getImageFile()
     {
         return $this->imageFile;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Annuaire
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }
