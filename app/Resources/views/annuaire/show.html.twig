@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Annuaire</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ annuaire.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ annuaire.nom }}</td>
+            </tr>
+            <tr>
+                <th>Quartier</th>
+                <td>{{ annuaire.quartier }}</td>
+            </tr>
+            <tr>
+                <th>Situation</th>
+                <td>{{ annuaire.situation }}</td>
+            </tr>
+            <tr>
+                <th>Localisation</th>
+                <td>{{ annuaire.localisation }}</td>
+            </tr>
+            <tr>
+                <th>Boitepostale</th>
+                <td>{{ annuaire.boitePostale }}</td>
+            </tr>
+            <tr>
+                <th>Tel</th>
+                <td>{{ annuaire.tel }}</td>
+            </tr>
+            <tr>
+                <th>Cel</th>
+                <td>{{ annuaire.cel }}</td>
+            </tr>
+            <tr>
+                <th>Facebook</th>
+                <td>{{ annuaire.facebook }}</td>
+            </tr>
+            <tr>
+                <th>Linked</th>
+                <td>{{ annuaire.linked }}</td>
+            </tr>
+            <tr>
+                <th>Google</th>
+                <td>{{ annuaire.google }}</td>
+            </tr>
+            <tr>
+                <th>Twitter</th>
+                <td>{{ annuaire.twitter }}</td>
+            </tr>
+            <tr>
+                <th>Website</th>
+                <td>{{ annuaire.website }}</td>
+            </tr>
+            <tr>
+                <th>Instagram</th>
+                <td>{{ annuaire.instagram }}</td>
+            </tr>
+            <tr>
+                <th>Pinterest</th>
+                <td>{{ annuaire.pinterest }}</td>
+            </tr>
+            <tr>
+                <th>Tag</th>
+                <td>{{ annuaire.tag }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{% if annuaire.statut %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Imagename</th>
+                <td>{{ annuaire.imageName }}</td>
+            </tr>
+            <tr>
+                <th>Imagesize</th>
+                <td>{{ annuaire.imageSize }}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if annuaire.updatedAt %}{{ annuaire.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ annuaire.slug }}</td>
+            </tr>
+            <tr>
+                <th>Publiepar</th>
+                <td>{{ annuaire.publiePar }}</td>
+            </tr>
+            <tr>
+                <th>Modifiepar</th>
+                <td>{{ annuaire.modifiePar }}</td>
+            </tr>
+            <tr>
+                <th>Publiele</th>
+                <td>{{ annuaire.publieLe }}</td>
+            </tr>
+            <tr>
+                <th>Modifiele</th>
+                <td>{{ annuaire.modifieLe }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_annuaire_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_annuaire_edit', { 'id': annuaire.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

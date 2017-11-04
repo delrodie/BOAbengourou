@@ -1,0 +1,120 @@
+{% extends 'backoffice.html.twig' %}
+
+{% block title %}Liste des entreprise{% endblock %}
+
+{% block body %}
+<div class="pageheader">
+  <h3><i class="fa fa-home"></i>  Gestion des entreprise</h3>
+  <div class="breadcrumb-wrapper">
+    <span class="label"></span>
+    <ol class="breadcrumb">
+      <li><a href="#">Accueil</a></li>
+      <li class="active">annuaire</li>
+    </ol>
+  </div>
+</div>
+
+<div id="page-content">
+
+  <br>
+    <!-- Message -->
+      {% for flash_message in app.session.flashBag.get('notice') %}
+        {% if flash_message %}
+        <div class="row">
+          <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2">
+            <div class="alert alert-info media fade in">
+              <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+              <div class="media-left">
+                <span class="icon-wrap icon-wrap-xs icon-circle alert-icon">
+                  <i class="fa fa-check fa-lg"></i>
+                </span>
+              </div>
+              <div class="media-body">
+                <p></p>
+                  <h4 class="alert-title" style="color: green">
+                    {{ flash_message }}
+                  </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+      <!-- \Message -->
+      <br>
+
+  <div class="row">
+    <div class="col-sm-12 col-sm-offset-0">
+      <div class="panel">
+        <div class="btn-toolbar pad-all">
+          <div class="btn-group">
+            <a href="{{ path('admin_annuaire_new') }}">
+            <button class="btn btn-sm btn-default" type="button">
+              <i class="fa fa-plus"></i> Ajouter une nouvelle entreprise
+            </button>
+            </a>
+          </div>
+        </div>
+        <div class="panel-heading">
+          <h3 class="panel-title"></h3>
+        </div>
+        <div class="panel-body">
+            {% for annuaire in annuaires %}
+            <div class="row" style="margin-bottom: 20px; padding-bottom: 25px; border-bottom: solid 1px #ccc;">
+              <div class="col-md-3">
+                <div class="view-mail text-justify">
+                  <a href="{{ path('admin_annuaire_edit', {'slug': annuaire.slug})}}">
+                    <img src="{{ vich_uploader_asset(annuaire, 'imageFile') }}" alt="{{ annuaire.nom }}" class="img-thumbnail img-page" />
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <p><strong><em>{{ annuaire.nom }}</em></strong></p>
+                <p>{{ annuaire.quartier }} - {{ annuaire.situation }}</p>
+                <p>Boite postale: {{ annuaire.boitePostale }}</p>
+                <p>Tel: {{ annuaire.tel }} - Cel: {{ annuaire.cel }}</p>
+                <p>
+                  {% if (annuaire.website) %}
+                  Website :
+                  <a href="{{ annuaire.website }}" target="_blank">Http://{{ annuaire.website }}</a>
+                  {% endif %}
+                </p>
+                <p>
+                  {% if (annuaire.facebook) %}
+                  <a href="https://facebook.com/{{ annuaire.facebook }}/" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
+                  {% endif %}
+                  {% if (annuaire.google) %}
+                  <a href="https://plus.google.com/{{ annuaire.google }}/" target="_blank"><i class="fa fa-google-plus-square fa-lg"></i></a>
+                  {% endif %}
+                  {% if (annuaire.twitter) %}
+                  <a href="https://twitter.com/{{ annuaire.twitter }}/" target="_blank"><i class="fa fa-twitter-square fa-lg"></i></a>
+                  {% endif %}
+                  {% if (annuaire.linked) %}
+                  <a href="https://linkedin.com/{{ annuaire.linked }}/" target="_blank"><i class="fa fa-linkedin-square fa-lg"></i></a>
+                  {% endif %}
+                  {% if (annuaire.instagram) %}
+                  <a href="https://instagram.com/{{ annuaire.instagram }}/" target="_blank"><i class="fa fa-instagram fa-lg"></i></a>
+                  {% endif %}
+                  {% if (annuaire.pinterest) %}
+                  <a href="https://pinterest.com/{{ annuaire.pinterest }}/" target="_blank"><i class="fa fa-pinterest-square fa-lg"></i></a>
+                  {% endif %}
+                </p>
+              </div>
+              <div class="col-md-3">
+                <p>{{ annuaire.domaine|upper }}</p>
+                <p>
+                  {% for tag in annuaire.tag|split(',') %}
+                      {{ tag|title }},
+                  {% endfor %}
+                </p>
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}

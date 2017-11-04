@@ -136,6 +136,15 @@ vich_uploader:
             delete_on_update:   true
             delete_on_remove:   true
 
+        annuaire_image:
+            uri_prefix:         /uploads/annuaire
+            upload_destination: '%kernel.root_dir%/../web/uploads/annuaire'
+            namer: vich_uploader.namer_uniqid
+
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+
 liip_imagine:
     resolvers:
         default:
@@ -230,6 +239,12 @@ liip_imagine:
             filters:
                 thumbnail: { size: [360, 240], mode: outbound }
                 background: { size: [360, 240], position: center, color: '#ffffff'}
+
+        annuaire:
+            quality: 100
+            filters:
+                thumbnail: { size: [100, 100], mode: inset }
+                background: { size: [100, 100], position: center, color: '#ffffff'}
 
         post:
             quality: 100

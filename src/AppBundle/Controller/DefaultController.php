@@ -64,7 +64,7 @@ class DefaultController extends Controller
     /**
      * Date du jour encours
      *
-     * @Route("/date", name="fo_date")
+     * @Route("/actualite/date", name="fo_date")
      */
     public function dateAction(Request $request)
     {

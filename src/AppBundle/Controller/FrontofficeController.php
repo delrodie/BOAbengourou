@@ -73,7 +73,7 @@ class FrontofficeController extends Controller
     /**
      * Affichage de la rubrique globale
      *
-     * @Route("/{nom}/", name="fo_rubrique_post")
+     * @Route("/categorie/{nom}/", name="fo_rubrique_post")
      */
     public function rubriquePostAction(Request $request, $nom)
     {
@@ -100,6 +100,22 @@ class FrontofficeController extends Controller
         return $this->render('frontoffice/rubrique.html.twig', array(
             'posts' => $posts,
             'rubrique'  => $tag,
+        ));
+    }
+
+    /**
+     * Liste des entreprise de l'annuaire
+     *
+     * @Route("/annuaire/liste-des-entreprises", name="fo_annuaire_liste")
+     */
+    public function annuaireAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        //$annuaires = $em->getRepository('AppBundle:Annuaire')->findOrderByNom();
+        $annuaires = $em->getRepository('AppBundle:Annuaire')->findAll();
+
+        return $this->render('frontoffice/annuaire.html.twig', array(
+            'annuaires' => $annuaires,
         ));
     }
 }
