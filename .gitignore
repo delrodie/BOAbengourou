@@ -17,4 +17,6 @@
 /web/bundles/
 /web/uploads/
 /web/media/
+/web/ressources/images/banner-ads/
+/web/ressources/images/news/
 /src/AppBundle/Entity/*~

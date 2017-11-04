@@ -1,13 +1,553 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
+
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{% block title %}Portail d'informations de la région d'Abengourou{% endblock %}</title>
+
+        <link rel="shortcut icon" href="{{ asset('ressources/images/favicon2.ico')}}" type="image/x-icon">
+        <link rel="icon" type="image/x-icon" href="{{ asset('ressources/images/favicon2.ico') }}" />
+
+        {% block meta %}
+        <meta name="keywords" content="Abengourou, indenié, djuablin, banga, kanga, amoikon, dihye, roi, paix, abinan"  />
+        <meta name="description" content="Abengourou est un portail d'informations en ligne populaire qui offre des contenus culturels, sociaux, politiques, sanitaires, sportifs, environnementaux, evenementiels, religieux, historiques et bien d'autres de la région d'Abengourou." />
+  	    <meta name="revisit" content="3 days" />
+  	    <meta name="revisit-after" content="3 days">
+  	    <meta name="Author" content="AHOUZOF, Delrodie AMOIKON">
+  	    <meta name="Copyright" content="www.abengourou.ci">
+  	    <meta name="Content-Language" content="FR">
+  	    <meta name="distribution" content="global" />
+  	    <meta name="Audience" content="All" />
+  	    <meta name="Robots" content="full">
+
+        <link rel="canonical" href="{{ path('homepage')}}" />
+        <meta property="og:locale" content="fr_FR" />
+        <meta property="og:type" content="Item" />
+        <meta property="og:title" content="Portail d'informations de la région d'Abengourou" />
+        <meta property="og:description" content="Abengourou est un portail d'informations en ligne populaire qui offre des contenus culturels, sociaux, politiques, sanitaires, sportifs, environnementaux, evenementiels, religieux, historiques et bien d'autres de la région d'Abengourou. " />
+        <meta property="og:url" content="http://abengourou.ci{{ path('homepage')}}" />
+        <meta property="og:site_name" content="Abengourou" />
+        <meta property="article:section" content="Item" />
+        <meta property="article:published_time" content="2017-10-09T15:25:59+00:00" />
+        <!--<meta property="article:modified_time" content="2015-08-17T15:04:43+00:00" />
+        <meta property="og:updated_time" content="2015-08-17T15:04:43+00:00" />-->
+        <meta property="og:image" content="http://abengourou.ci/ressources/images/logos/logo.png" />
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:description" content="Abengourou est un portail d'informations en ligne populaire qui offre des contenus culturels, sociaux, politiques, sanitaires, sportifs, environnementaux, evenementiels, religieux, historiques et bien d'autres de la région d'Abengourou. "/>
+        <meta name="twitter:title" content="Portail d'informations de la région d'Abengourou"/>
+        <meta name="twitter:domain" content="Abengourou"/>
+        <meta name="twitter:image:src" content="http://abengourou.ci/ressources/images/logos/logo.png"/>
+        <script type="application/ld+json">
+    		{
+    		  "@context": "http://schema.org",
+    		  "@type": "NewsArticle",
+    		  "mainEntityOfPage": {
+    		    "@type": "WebPage",
+    		    "@id": "https://arfis-ci.com"
+    		  },
+    		  "headline": "Portail d'informations de la région d'Abengourou ",
+    		  "image": [
+    		    "http://arfis-ci.com/assets/img/2-mbl.png",
+    		    "http://arfis-ci.com/assets/img/arfisged-numerisation.png"
+    		   ],
+    		  "datePublished": "2017-09-9T15:25:59+00:00",
+    		  "dateModified": "2017-09-9T15:25:59+00:00",
+    		  "author": {
+    		    "@type": "Person",
+    		    "name": "Delrodie AMOIKON"
+    		  },
+    		   "publisher": {
+    		    "@type": "Organization",
+    		    "name": "ABENGOUROU",
+    		    "logo": {
+    		      "@type": "ImageObject",
+    		      "url": "http://abengourou.ci/ressources/images/logos/logo.png"
+    		    }
+    		  },
+    		  "description": "Abengourou est un portail d'informations en ligne populaire qui offre des contenus culturels, sociaux, politiques, sanitaires, sportifs, environnementaux, evenementiels, religieux, historiques et bien d'autres de la région d'Abengourou."
+    		}
+    		</script>
+        {% endblock %}
+
+        <script type="application/ld+json">
+    		{
+    		  "@context": "http://schema.org",
+    		  "@type": "Organization",
+    		  "url": "http://www.abengourou.ci",
+    		  "contactPoint": [{
+    		    "@type": "ContactPoint",
+    		    "telephone": "+225 09 32 15 21",
+    		    "contactType": "Direction",
+    		    "contactOption": "TollFree",
+    		    "areaServed": "FR"
+    		  },{
+    		    "@type": "ContactPoint",
+    		    "telephone": "+225 52 79 59 95 ",
+    		    "contactType": "Direction",
+    		    "contactOption": "TollFree",
+    		    "areaServed": [
+    		      "CI",
+    		      "FR"
+    		    ],
+    		    "availableLanguage": [
+    		      "French"
+    		      "English",
+    		    ]
+    		  }]
+    		}
+    		</script>
+
+        {% block stylesheets %}
+
+      	<link rel="stylesheet" href="{{ asset('ressources/css/bootstrap.min.css')}}">
+      	<link rel="stylesheet" href="{{ asset('ressources/css/style.css')}}">
+      	<link rel="stylesheet" href="{{ asset('ressources/css/responsive.css')}}">
+      	<link rel="stylesheet" href="{{ asset('ressources/css/font-awesome.min.css')}}">
+      	<link rel="stylesheet" href="{{ asset('ressources/css/animate.css')}}">
+      	<link rel="stylesheet" href="{{ asset('ressources/css/owl.carousel.min.css')}}">
+      	<link rel="stylesheet" href="{{ asset('ressources/css/owl.theme.default.min.css')}}">
+      	<link rel="stylesheet" href="{{ asset('ressources/css/colorbox.css')}}">
+
+
+      	{% endblock %}
+
+        {% block rssxml %}
+        <link rel="alternate" type="application/rss+xml" title="Abengourou Feed" href="feed/accueil.xml" />
+        <link rel="alternate" type="application/rss+xml" title="" href="feed/accueil.xml" />
+        {% endblock %}
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+        <!--[if lt IE 9]>
+          <script src="js/html5shiv.js"></script>
+          <script src="js/respond.min.js"></script>
+        <![endif]-->
+
     </head>
     <body>
+      <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.10";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        <div class="body-inner">
+
+        <div id="top-bar" class="top-bar">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-sm-8 col-xs-12">
+              <div class="ts-date">
+                {{ render(url('fo_date'))}}
+              </div>
+              <ul class="unstyled top-nav">
+                <li><a href="#">Qui sommes-nous?</a></li>
+                <li><a href="#">Evenements et publicités</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div><!--/ Top bar left end -->
+
+            <div class="col-md-4 col-sm-4 col-xs-12 top-social text-right">
+              <ul class="unstyled">
+                <li>
+                  <a title="Facebook" href="https://www.facebook.com/Abengourou-Webzine-191251474765659/">
+                    <span class="social-icon"><i class="fa fa-facebook"></i></span>
+                  </a>
+                  <a title="Twitter" href="https://twitter.com/wabengourou">
+                    <span class="social-icon"><i class="fa fa-twitter"></i></span>
+                  </a>
+                  <a title="Google+" href="https://plus.google.com/communities/102658190203900718782?hl=fr">
+                    <span class="social-icon"><i class="fa fa-google-plus"></i></span>
+                  </a>
+                  <a title="Linkdin" href="#">
+                    <span class="social-icon"><i class="fa fa-instagram"></i></span>
+                  </a>
+                  <a title="Rss" href="#">
+                    <span class="social-icon"><i class="fa fa-rss"></i></span>
+                  </a>
+                  <a title="Skype" href="#">
+                    <span class="social-icon"><i class="fa fa-pinterest"></i></span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <!-- Header start -->
+        <header id="header" class="header">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-5 col-md-5">
+              <div class="logo">
+                 <a href="{{ path('homepage')}}">
+                  <img src="{{ asset('ressources/images/logos/logo.png')}}" alt="Abengourou" class="img-responsive">
+                 </a>
+              </div>
+            </div><!-- logo col end -->
+
+            <div class="col-xs-12 col-sm-7 col-md-7 header-right">
+              <div class="ad-banner pull-right">
+                <!--<a href="#"><img src="{{ asset('ressources/images/banner-ads/ad-top-header2.png')}}" class="img-responsive" alt=""></a>-->
+              </div>
+            </div>
+          </div>
+        </div>
+        </header>
+
+        <div class="main-nav clearfix">
+        <div class="container">
+          <div class="row">
+            <nav class="site-navigation navigation">
+              <div class="site-nav-inner pull-left">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+
+                <div class="collapse navbar-collapse navbar-responsive-collapse">
+                  <ul class="nav navbar-nav">
+
+                    <li>
+                      <a href="{{ path('homepage')}}">Accueil</a>
+                    </li>
+
+                    <li class="dropdown mega-dropdown">
+                      <a href="#" class="dropdown-toggle" >Actualités <i class="fa fa-angle-down"></i></a>
+                      <div class="dropdown-menu mega-menu-content hidden-xs hidden-sm clearfix">
+                        <div class="menu-tab">
+                          <ul class="nav nav-tabs nav-stacked col-md-2" data-toggle="tab-hover">
+                              <li class="active">
+                                <a class="animated fadeIn" href="#tab-A" data-toggle="tab">
+                                  <span class="tab-head">
+                                  <span class="tab-text-title">Agenda</span>
+                                </span>
+                                </a>
+                              </li>
+                              <li>
+                                <a class="animated fadeIn" href="#tab-B" data-toggle="tab">
+                                  <span class="tab-head">
+                                  <span class="tab-text-title">Politique</span>
+                                </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="animated fadeIn" href="#tab-C" data-toggle="tab">
+                                  <span class="tab-head">
+                                  <span class="tab-text-title">Culture</span>
+                                </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="animated fadeIn" href="#tab-D" data-toggle="tab">
+                                  <span class="tab-head">
+                                  <span class="tab-text-title">Société</span>
+                                </span>
+                                </a>
+                            </li>
+                          </ul>
+
+                          <div class="tab-content col-md-10">
+                              <div class="tab-pane active animated fadeIn" id="tab-A">
+                                <div class="row">
+                                  {{ render(url('fo_menu_agenda'))}}
+                                </div>
+                              </div>
+
+                              <div class="tab-pane animated fadeIn" id="tab-B">
+                                <div class="row">
+                                  {{ render(url('fo_menu', {'type1': 'politique', 'type2': 'dossier'}))}}
+                                </div>
+                              </div>
+
+                              <div class="tab-pane animated fadeIn" id="tab-C">
+                                <div class="row">
+                                  {{ render(url('fo_menu', {'type1': 'culture', 'type2': 'education'}))}}
+                                </div>
+                              </div>
+
+                              <div class="tab-pane animated fadeIn" id="tab-D">
+                                <div class="row">
+                                  {{ render(url('fo_menu', {'type1': 'societe', 'type2': 'religion'}))}}
+                                </div>
+                              </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Abengourou <i class="fa fa-angle-down"></i></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Royaume</a></li>
+                        <li><a href="#">Conseil regional</a></li>
+                        <li><a href="#">Commune</a></li>
+                        <li><a href="#">Diocèse</a></li>
+                        <li><a href="#">CNJ</a></li>
+                        <li><a href="#">Villages</a></li>
+                      </ul>
+                    </li>
+
+                    <li>
+                      <a href="{{ path('fo_rubrique_post', {'nom': 'decouverte'})}}">Decouvertes</a>
+                    </li>
+
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Medias <i class="fa fa-angle-down"></i></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Videos</a></li>
+                        <li class="dropdown-submenu">
+                          <a href="#.">Radios</a>
+                          <ul class="dropdown-menu">
+                            <li><a href="#">FM 1</a></li>
+                            <li><a href="#">FM 2</a></li>
+                          </ul>
+                        </li>
+                        <li><a href="#">Photos</a></li>
+                      </ul>
+                    </li>
+
+                    <li>
+                      <a href="{{ path('fo_annuaire_liste')}}">Annuaire</a>
+                    </li>
+
+
+                  </ul>
+                </div>
+
+              </div>
+            </nav>
+
+            <div class="nav-search">
+              <span id="search"><i class="fa fa-search"></i></span>
+            </div>
+
+            <div class="search-block" style="display: none;">
+              <input type="text" class="form-control" placeholder="Entrez ce dont vous cherchez">
+              <span class="search-close">&times;</span>
+            </div>
+
+          </div>
+        </div>
+
+        </div>
+
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+
+        <footer id="footer" class="footer">
+        <div class="footer-main">
+          <div class="container">
+            <div class="row">
+
+              <div class="col-md-3 col-sm-12 footer-widget widget-categories">
+                <h3 class="widget-title">Rubriques</h3>
+                <ul>
+                  <li>
+                    <a href="#"><span class="catTitle">Annuaire</span>
+                      <span class="catCounter"> ( {{ render(url('fo_nb_articles', {'rubrique': 'annuaire'}))}})</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#"><span class="catTitle">Cultures</span>
+                      <span class="catCounter"> ( {{ render(url('fo_nb_articles', {'rubrique': 'culture'}))}})</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#"><span class="catTitle">Découvertes</span>
+                      <span class="catCounter"> ( {{ render(url('fo_nb_articles', {'rubrique': 'decouverte'}))}})</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#"><span class="catTitle">Dossiers</span>
+                      <span class="catCounter"> ( {{ render(url('fo_nb_articles', {'rubrique': 'dossier'}))}})</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#"><span class="catTitle">Economie</span>
+                      <span class="catCounter"> ( {{ render(url('fo_nb_articles', {'rubrique': 'economie'}))}})</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#"><span class="catTitle">Education</span>
+                      <span class="catCounter"> ( {{ render(url('fo_nb_articles', {'rubrique': 'education'}))}})</span>
+                    </a>
+                  </li>
+                </ul>
+
+              </div>
+
+                <div class="col-md-3 col-sm-12 footer-widget widget-categories">
+                  <h3 class="widget-title">Rubriques</h3>
+                  <ul>
+                    <li>
+                      <a href="#"><span class="catTitle">Environnement</span>
+                        <span class="catCounter"> ( {{ render(url('fo_nb_articles', {'rubrique': 'environnement'}))}})</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#"><span class="catTitle">Politiques</span>
+                        <span class="catCounter"> ( {{ render(url('fo_nb_articles', {'rubrique': 'politique'}))}})</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#"><span class="catTitle">Réligions</span>
+                        <span class="catCounter"> ( {{ render(url('fo_nb_articles', {'rubrique': 'religion'}))}})</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#"><span class="catTitle">Santés</span>
+                        <span class="catCounter"> ( {{ render(url('fo_nb_articles', {'rubrique': 'sante'}))}})</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#"><span class="catTitle">Sociétés</span>
+                        <span class="catCounter"> ( {{ render(url('fo_nb_articles', {'rubrique': 'societe'}))}})</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#"><span class="catTitle">Sports</span>
+                        <span class="catCounter"> ( {{ render(url('fo_nb_articles', {'rubrique': 'sport'}))}})</span>
+                      </a>
+                    </li>
+                  </ul>
+
+                </div><!-- Col end -->
+
+              <div class="col-md-3 col-sm-12 footer-widget">
+                <h3 class="widget-title">Newsletter</h3>
+    						<div class="list-post-block">
+    							<p>Souscrire à notre newsletter pour recevoir réguilièrement des actualités de la cité de Paix</p>
+    							<div class="newsletter-form">
+    									<form action="#" method="post">
+    										<div class="form-group">
+    											<input type="email" name="email" id="newsletter-form-email" class="form-control form-control-lg" placeholder="E-mail" autocomplete="off">
+    											<button class="btn btn-primary">Souscrire</button>
+    										</div>
+    									</form>
+    								</div>
+    						</div><!-- List post block end -->
+
+              </div><!-- Col end -->
+
+              <div class="col-md-3 col-sm-12 footer-widget twitter-widget">
+                <h3 class="widget-title">Derniers Tweets</h3>
+                <ul>
+                  <li>
+                    <div class="tweet-text">
+                    <span>About 13 days ago</span>
+                    Please, Wait for the next version of our templates to update #Joomla 3.7
+                    <a href="#">https://t.co/LlEv8HgokN</a>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="tweet-text">
+                    <span>About 15 days ago</span>
+                    #WordPress 4.8 is here!
+                    <a href="#">https://t.co/uDjRH4Gya9</a>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="tweet-text">
+                    <span>About 1 month ago</span>
+                    Please, Wait for the next version of our templates to update #Joomla 3.7
+                    <a href="#">https://t.co/LlEv8HgokN</a>
+                    </div>
+                  </li>
+                </ul>
+              </div><!-- Col end -->
+
+            </div><!-- Row end -->
+          </div><!-- Container end -->
+        </div><!-- Footer main end -->
+
+        <div class="footer-info text-center">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="footer-info-content">
+                  <div class="footer-logo">
+                    <img class="img-responsive" src="images/logos/logo_blanc.png" alt="" />
+                  </div>
+                  <p>Abengourou est un portail d'informations en ligne populaire qui offre des contenus culturels, sociaux, politiques, sanitaires, sportifs, environnementaux, evenementiels, religieux, historiques et bien d'autres de la région d'Abengourou. Vous pouvez nous joindre par courrier electronique ou par téléphone  </p>
+                  <p class="footer-info-phone"><i class="fa fa-phone"></i> +(225) 09 321 521</p>
+                  <p class="footer-info-email"><i class="fa fa-envelope-o"></i> infos@abengourou.ci</p>
+                  <ul class="unstyled footer-social">
+                    <li>
+                      <a title="Rss" href="#">
+                        <span class="social-icon"><i class="fa fa-rss"></i></span>
+                      </a>
+                      <a title="Facebook" href="https://www.facebook.com/Abengourou-Webzine-191251474765659/">
+                        <span class="social-icon"><i class="fa fa-facebook"></i></span>
+                      </a>
+                      <a title="Twitter" href="https://twitter.com/wabengourou">
+                        <span class="social-icon"><i class="fa fa-twitter"></i></span>
+                      </a>
+                      <a title="Google+" href="https://plus.google.com/communities/102658190203900718782?hl=fr">
+                        <span class="social-icon"><i class="fa fa-google-plus"></i></span>
+                      </a>
+                      <a title="Skype" href="#">
+                        <span class="social-icon"><i class="fa fa-pinterest"></i></span>
+                      </a>
+                      <a title="Skype" href="#">
+                        <span class="social-icon"><i class="fa fa-instagram"></i></span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </footer>
+
+        <div class="copyright">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12 col-sm-6">
+                <div class="copyright-info">
+                  <span>Copyright © 2017 Abengourou, Tous droits réservés. Powered By <a href="http://ahouzof.com" target="_blank" style="color: white">AHOUZ'OF</a></span>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-sm-6">
+                <div class="footer-menu">
+                  <ul class="nav unstyled">
+                    <li><a href="#">Conditions du site</a></li>
+                    <li><a href="#">Politiques de confidentialités</a></li>
+                    <li><a href="#">Publicités</a></li>
+                    <li><a href="#">Nous cntacter</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div><!-- Row end -->
+
+            <div id="back-to-top" data-spy="affix" data-offset-top="10" class="back-to-top affix">
+              <button class="btn btn-primary" title="Back to Top">
+                <i class="fa fa-angle-up"></i>
+              </button>
+            </div>
+
+          </div><!-- Container end -->
+        </div><!-- Copyright end -->
+
+        {% block javascripts %}
+        <script type="text/javascript" src="{{ asset('ressources/js/jquery.js')}}"></script>
+      	<script type="text/javascript" src="{{ asset('ressources/js/bootstrap.min.js')}}"></script>
+      	<script type="text/javascript" src="{{ asset('ressources/js/owl.carousel.min.js')}}"></script>
+      	<script type="text/javascript" src="{{ asset('ressources/js/jquery.counterup.min.js')}}"></script>
+      	<script type="text/javascript" src="{{ asset('ressources/js/waypoints.min.js')}}"></script>
+      	<script type="text/javascript" src="{{ asset('ressources/js/jquery.colorbox.js')}}"></script>
+      	<script type="text/javascript" src="{{ asset('ressources/js/smoothscroll.js')}}"></script>
+      	<script type="text/javascript" src="{{ asset('ressources/js/custom.js')}}"></script>
+        {% endblock %}
+
     </body>
 </html>

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Typevent</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ typevent.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ typevent.nom }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{% if typevent.statut %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ typevent.slug }}</td>
+            </tr>
+            <tr>
+                <th>Publiepar</th>
+                <td>{{ typevent.publiePar }}</td>
+            </tr>
+            <tr>
+                <th>Modifiepar</th>
+                <td>{{ typevent.modifiePar }}</td>
+            </tr>
+            <tr>
+                <th>Publiele</th>
+                <td>{{ typevent.publieLe }}</td>
+            </tr>
+            <tr>
+                <th>Modifiele</th>
+                <td>{{ typevent.modifieLe }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_typevent_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_typevent_edit', { 'id': typevent.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
